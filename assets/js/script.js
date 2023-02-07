@@ -21,7 +21,9 @@ function formSubmitHandler(event) {
 
 // function to fetch first API (job search)
 function getJobSearch(jobs) {
-    var jobsUrl = 'https://arbeitnow.com/api/job-board-api';
+    var apiKey = "daed771fd0ad16dbb3a9de8575ba1b7d7160d8d32ea4d206975cbbe4464934ce";
+    var jobs = "";
+    var jobsUrl = 'https://www.themuse.com/api/public/jobs?api_key=' + apiKey;
 
     fetch(jobsUrl)
         .then(function (response) {
