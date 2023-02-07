@@ -8,8 +8,38 @@
     <link rel="stylesheet" href="./assets/css/style.css"/>
     <title>Web Dev Remote Job Search & Some Shibes</title>
 </head>
-<body>
-    
+
+
+<body class="flex-column min-100-vh">
+    <header class="hero">
+        <h1 class="app-title"></i>Web Dev Remote Job Search</h1>
+    </header>
+      
+    <main class="flex-row justify-space-between">
+        <div class="col-12 col-md-4">
+      
+        <div class="search-card">
+            <h2 class="card-header text-lowercase">Search your next job: </h2>
+            <form id="search-form" class="search-card-body">
+            <label class="form-label" for="jobs"></label>
+            <input name="job-parameter" id="job-parameter" type="text" autofocus="true" class="form-input" placeholder="Full-Stack"/>
+            <button type="submit" class="btn">Search</button>
+            </form>
+        </div>
+      
+        <div class="stored-card">
+            <div id="job-buttons" class="card-body">
+            </div>
+        </div>
+        </div>
+      
+        <div class="col-12 col-md-8">
+        <div id="jobs-container" class="jobs-group"></div>
+          
+        <div id="subtitle" class="jobs-subtitle"></div>
+        <div id="option-cards" class="options-cards"></div>
+        </div>
+    </main>
 </body>
 
 <script src="./assets/js/script.js"></script>
