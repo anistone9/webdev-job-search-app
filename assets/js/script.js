@@ -49,7 +49,7 @@ function displayResults(jobs) {
 // local storage
 
 // fetch second API (shibe)
-function getShibe(shibe) {
+function getShibe() {
     var shibesUrl = 'http://shibe.online/api/shibes?count=[1-100]&urls=[true/false]&httpsUrls=[true/false]'
 
     fetch(shibesUrl)
@@ -57,9 +57,14 @@ function getShibe(shibe) {
             return response.json()
         })
         .then(function (data) {
+            // console.log
             console.log("shibe-fetch", data)
-            getShibe(data);
+            displayShibe(data);
         })
+}
+
+function displayShibe (shibe) {
+
 }
 
 
