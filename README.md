@@ -3,15 +3,21 @@ This website allows web developers to find remote jobs based on their specificat
 
 ## Acknowledgments
 
+-[The Muse Job Search API Documentation](https://www.themuse.com/developers/api/v2)
 
+-[Random Shibe Image Generator API](https://shibe.online/)
 
-## Author
+-[Bulma a Bootstrap Alternative](https://bulma.io/documentation/)
+
+-[]()
+
+## Authors
 
 -[@MacaroniKetchup](https://github.com/MacaroniKetchup)
 
--[]()
+-[@alexiskeet](https://github.com/alexiskeet)
 
--[]()
+-[anistone9](https://github.com/anistone9)
 
 ## Demo
 
