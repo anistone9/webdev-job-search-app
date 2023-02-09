@@ -117,7 +117,7 @@ function displayResults(jobResults) {
         };
 
         //Added border for results and append new div to the job-cards div
-        resultsList.classList.add('card', 'border');
+        resultsList.classList.add('card', 'has-background-warning-dark', 'border');
         jobsContainerEl.appendChild(resultsList);
     }
 }
