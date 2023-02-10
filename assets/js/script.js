@@ -3,6 +3,12 @@ var searchJobEl = document.getElementById('job-parameter');
 var jobsContainerEl = document.getElementById('jobs-container');
 var jobCardEl = document.getElementById('job-cards');
 
+  // var api = 'https://www.themuse.com/api/public/jobs?q=';
+  // var jobSearch = "";
+  // var pageLoad = '&page=1&descending=true';
+  // var apiKey = "daed771fd0ad16dbb3a9de8575ba1b7d7160d8d32ea4d206975cbbe4464934ce";
+  var apiKey1 = "&api_key=0baa9fe5f5bebece6a9a3c670885ad97f3625e18b3148bb62e59c4df39a2780a";
+
 // function for event handler (search button) to retrieve user input
 function formSubmitHandler(event) {
     event.preventDefault();
@@ -21,9 +27,9 @@ function formSubmitHandler(event) {
 
 // function to fetch first API (job search)
 function getJobSearch(userJobs) {
-    // var apiKey = "daed771fd0ad16dbb3a9de8575ba1b7d7160d8d32ea4d206975cbbe4464934ce";
-    var apiKey1 = "0baa9fe5f5bebece6a9a3c670885ad97f3625e18b3148bb62e59c4df39a2780a";
-    var jobsUrl = 'https://www.themuse.com/api/public/jobs?category=Computer%20and%20IT&category=Software%20Engineer&category=Software%20Engineering&level=Entry%20Level&page=15&descending=true$api_key=' + apiKey1;
+
+//    var jobsUrl = api + userJobs + pageLoad + apiKey1
+var jobsUrl = `https://www.themuse.com/api/public/jobs?category=${userJobs}&page=1&descending=true` + apiKey1
 
     fetch(jobsUrl)
         .then(function (response) {
