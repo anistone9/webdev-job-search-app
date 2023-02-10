@@ -16,9 +16,7 @@ function formSubmitHandler(event) {
         getJobSearch(userSearch);
         //Empty search box after running the initial search
         searchJobEl.value = '';
-    } //Per Logan, do not user alerts - delete alert; else {
-    //alert('Please select a job category');
-    //}
+    }
 }
 
 // function to fetch first API (job search)
@@ -52,12 +50,12 @@ function displayResults(jobResults) {
         return;
     }
 
-    for (var i = 0; i < 10; i++) {
-        var titleEl = document.createElement('h2');
-        titleEl.innerHTML = 'Search results: ';
-        jobsContainerEl.appendChild(titleEl);
-        console.log(titleEl);
+    var titleEl = document.createElement('h2');
+    titleEl.innerHTML = 'Search results: ';
+    jobsContainerEl.appendChild(titleEl);
+    console.log(titleEl);
 
+    for (var i = 0; i < 10; i++) {
         //Create a new div for all the results, in order to add a border and style the list
         var resultsList = document.createElement('div');
 
@@ -95,7 +93,7 @@ function displayResults(jobResults) {
         resultsList.appendChild(jobDescription);
 
         var shortDescriptionData = jobResults.results[i].contents;
-        shortDescription.innerHTML = 'Job Description: ' + shortDescriptionData.substring(0, 300);
+        shortDescription.innerHTML = 'Job Description: ' + shortDescriptionData.substring(0, 200);
         resultsList.appendChild(shortDescription);
 
         var lessResult = document.createElement('a');
