@@ -173,32 +173,44 @@ function displayResults(jobResults) {
 // local storage
 
 // fetch second API (shibe)
-function getShibe() {
-    var shibesUrl = 'http://shibe.online/api/shibes?count=[1-100]&urls=[true/false]&httpsUrls=[true/false]'
+function getShibe(event) {
+    console.log("getting shibe!")
+    if(event){
+        event.preventDefault()
+        event.stopPropogation()
+    }
+
+    var shibesUrl = 'http://shibe.online/api/shibes?count=1&urls=true&httpsUrls=true'
 
     fetch(shibesUrl)
         .then(function (response) {
+            console.log(response)
             return response.json()
         })
         .then(function (data) {
             // console.log
             console.log("shibe-fetch", data)
+            // displayShibe(data[0])
+            document.getElementById("my-image").src = data[0];
+
         })
-        return getShibe()
+        // return getShibe()
 }
 
-function displayShibe(event) {
-    var print = new XMLHttpRequest();
-    print.onload = function() {
-        if (true) {
-            var data = JSON.parse(this.responseText);
-            document.getElementById("myImage").src = (getShibe());
-            // data.results[0].picture.large;
-        }
-        print.open("GET", getShibe());
-        return getShibe();
-    }
-}
+// function displayShibe(data) {
+//     console.log("displaying shibe")
+//     console.log(data)
+//     var print = new XMLHttpRequest();
+//     print.onclick = function(event) {
+//         console.log(event)
+//         if (true) {
+//             var data = JSON.parse(this.responseText);
+//             // data.results[0].picture.large;
+//         }
+//         print.open("GET", getShibe());
+//         return getShibe();
+//     }
+// }
 
 // event listener
 searchFormEl.addEventListener('submit', formSubmitHandler);
