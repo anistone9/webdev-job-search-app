@@ -11,7 +11,7 @@
 </head>
 
 
-<body class="flex-column min-100-vh has-background-success-dark">
+<body class="flex-column min-100-vh has-background-success-dark" onload="javascript:getShibe()">
     <header class="hero is-small is-danger">
         <!-- <h1 class="app-title"></i>Web Dev Remote Job Search</h1> -->
         <div class="hero-body">
@@ -24,7 +24,6 @@
 
     <main class="flex-row justify-space-between">
         <div class="col-12 col-md-4">
-
             <div class="search-card">
                 <h2 class="card-header text-lowercase">Search your next job: </h2>
                 <form id="search-form" class="search-card-body">
@@ -48,13 +47,14 @@
             <div id="job-cards" class="options-cards"></div>
         </div>
 
-        <article class="message is-warning">
+        <article class="message is-warning" id="print-shibes">
             <div class="message-header">
                 <p class="has-text-dark">Shibes for Hire!</p>
             </div>
             <div class="message-body">
                 Like this Shiba? Click the save button to see it next time you visit!!
             </div>
+            <img id="myImage"/>
             <div class="button is-danger">Save Your Shibes!</div>
         </article>
 

@@ -2,6 +2,7 @@ var searchFormEl = document.getElementById('search-form');
 var searchJobEl = document.getElementById('job-parameter');
 var jobsContainerEl = document.getElementById('jobs-container');
 var jobCardEl = document.getElementById('job-cards');
+// var shibePrintEl = document.getElementById('print-shibes');
 
   // var api = 'https://www.themuse.com/api/public/jobs?q=';
   // var jobSearch = "";
@@ -182,13 +183,23 @@ function getShibe() {
         .then(function (data) {
             // console.log
             console.log("shibe-fetch", data)
-            displayShibe(data);
         })
+        return getShibe()
 }
 
-function displayShibe(shibe) {
-
+function displayShibe(event) {
+    var print = new XMLHttpRequest();
+    print.onload = function() {
+        if (true) {
+            var data = JSON.parse(this.responseText);
+            document.getElementById("myImage").src = (getShibe());
+            // data.results[0].picture.large;
+        }
+        print.open("GET", getShibe());
+        return getShibe();
+    }
 }
 
 // event listener
 searchFormEl.addEventListener('submit', formSubmitHandler);
+document.addEventListener('onload', getShibe)
