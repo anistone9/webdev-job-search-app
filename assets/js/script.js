@@ -60,7 +60,6 @@ function displayResults(jobResults) {
     var titleEl = document.createElement('h2');
     titleEl.innerHTML = 'Search results: ';
     jobsContainerEl.appendChild(titleEl);
-    console.log(titleEl);
 
     for (var i = 0; i < 10; i++) {
         //Create a new div for all the results, in order to add a border and style the list
