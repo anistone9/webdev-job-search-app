@@ -2,6 +2,7 @@ var searchFormEl = document.getElementById('search-form');
 var searchJobEl = document.getElementById('job-parameter');
 var jobsContainerEl = document.getElementById('jobs-container');
 var jobCardEl = document.getElementById('job-cards');
+// var shibePrintEl = document.getElementById('print-shibes');
 
   // var api = 'https://www.themuse.com/api/public/jobs?q=';
   // var jobSearch = "";
@@ -172,23 +173,45 @@ function displayResults(jobResults) {
 // local storage
 
 // fetch second API (shibe)
-function getShibe() {
-    var shibesUrl = 'http://shibe.online/api/shibes?count=[1-100]&urls=[true/false]&httpsUrls=[true/false]'
+function getShibe(event) {
+    console.log("getting shibe!")
+    if(event){
+        event.preventDefault()
+        event.stopPropogation()
+    }
+
+    var shibesUrl = 'http://shibe.online/api/shibes?count=1&urls=true&httpsUrls=true'
 
     fetch(shibesUrl)
         .then(function (response) {
+            console.log(response)
             return response.json()
         })
         .then(function (data) {
             // console.log
             console.log("shibe-fetch", data)
-            displayShibe(data);
+            // displayShibe(data[0])
+            document.getElementById("my-image").src = data[0];
+
         })
+        // return getShibe()
 }
 
-function displayShibe(shibe) {
-
-}
+// function displayShibe(data) {
+//     console.log("displaying shibe")
+//     console.log(data)
+//     var print = new XMLHttpRequest();
+//     print.onclick = function(event) {
+//         console.log(event)
+//         if (true) {
+//             var data = JSON.parse(this.responseText);
+//             // data.results[0].picture.large;
+//         }
+//         print.open("GET", getShibe());
+//         return getShibe();
+//     }
+// }
 
 // event listener
 searchFormEl.addEventListener('submit', formSubmitHandler);
+document.addEventListener('onload', getShibe)
