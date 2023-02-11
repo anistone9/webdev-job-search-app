@@ -3,7 +3,7 @@
     --secondary: #649587;
     --tertiary: #c2d1df;
     --light-dark: #41809b;
-    --dark: #000101;
+    --dark: #363636;
     --border-radius: .1rem;
 }
 
@@ -49,7 +49,7 @@ main {
 
 p {
     font-size: 1.2rem;
-    color: var(--tertiary);
+    color: var(--dark);
 }
 
 .btn {
@@ -106,8 +106,10 @@ p {
     padding: 1%;
     border-style: solid;
     border-color: transparent;
-    background-color: var(--dark);
+    background-color: #fffaeb;
+    color: #363636;
     display: inline-block;
+    width: 100%;
 }
 
 .card-header {
