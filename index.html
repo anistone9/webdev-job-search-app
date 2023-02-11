@@ -16,7 +16,7 @@
         <!-- <h1 class="app-title"></i>Web Dev Remote Job Search</h1> -->
         <div class="hero-body">
             <div class="container">
-                <h1 class="app-title">Web Dev Remote Job Search</h1>
+                <h1 class="app-title">Web Dev Job Search</h1>
                 <h2 class="app-subtitle-center">The New Job of Your Future!!</h2>
             </div>
         </div>
@@ -25,53 +25,27 @@
     <main class="flex-row justify-space-between">
         <div class="col-12 col-md-4">
             <div class="search-card">
-                <h2 class="card-header text-lowercase">Search your next job: </h2>
+                <h2 class="card-header text-lowercase">Select a job category</h2>
                 <!-- SEARCH BAR -->
                 <form id="search-form" class="search-card-body">
                     <label class="form-label" for="jobs"></label>
-                    <input name="job-parameter" id="job-parameter" type="text" autofocus="true"
-                        class="form input is-danger" placeholder="Computer and IT, Software Engineer" />
+                    <select name="categories" id="categories">
+                        <option value="Computer and IT">Computer and IT</option>
+                        <option value="Data and Analytics">Data and Analytics</option>
+                        <option value="Data Science">Data Science</option>
+                        <option value="Science and Engineering">Science and Engineering</option>
+                        <option value="Software Engineer">Software Engineer</option>
+                        <option value="Software Engineering">Software Engineering</option>
+                        <option value="Design and UX">Design and UX</option>
+                        <option value="Design">Design</option>
+                    </select>
                     <button type="submit" class="button is-info">Search</button>
                 </form>
-                <!-- LIST OF JOB CATERGORIES TO SEARCH FROM -->
-                <article class="message is-warning">
-                    <div class="message-header">
-                        <p class="has-text-dark">Enter One of These Desired Categories Below to Search From</p>
-                    </div>
-                    <div class="message-body">
-                        <ul>Accounting | Accounting and Finance</ul>
-                        <ul>Account Management |Account Management/Customer Success</ul>
-                        <ul>Administration and Office | Advertising and Marketing</ul>
-                        <ul>Animal Care | Arts</ul>
-                        <ul>Business Operations | Cleaning and Facilities</ul>
-                        <ul>Computer and IT | Construction</ul>
-                        <ul>CorporateCustomer | Service</ul>
-                        <ul>Data and AnalyticsData | Science</ul>
-                        <ul>Design | Design and UX</ul>
-                        <ul>Editor | Education</ul>
-                        <ul>Energy Generation and Mining | Entertainment and Travel Services</ul>
-                        <ul>Farming and OutdoorsFood | Hospitality Services</ul>
-                        <ul>Healthcare | HR</ul>
-                        <ul>Human Resources and Recruitment | Installation, Maintenance, and Repairs</ul>
-                        <ul>IT | Law</ul>
-                        <ul>Legal Services | Management</ul>
-                        <ul>Manufacturing and Warehouse | Marketing</ul>
-                        <ul>Mechanic | Media, PR, and Communications</ul>
-                        <ul>Mental Health | Nurses</ul>
-                        <ul>Office Administration | Personal Care and Services</ul>
-                        <ul>Physical Assistant | Product</ul>
-                        <ul>Product Management | Project Management</ul>
-                        <ul>Protective Services | Public Relations</ul>
-                        <ul>Real Estate | Recruiting</ul>
-                        <ul>Retail | Sales</ul>
-                        <ul>Science and Engineering | Social Services</ul>
-                        <ul>Software Engineer | Software Engineering</ul>
-                        <ul>Sports, Fitness, and Recreation | Transportation and Logistics</ul>
-                        <ul>Unknown | UX</ul>
-                        <ul>Videography | Writer</ul>
-                        <ul>Writing and Editing</ul>
-                    </div>
-                </article>
+            </div>
+
+            <div class="stored-card">
+                <div id="job-buttons" class="card-body">
+                </div>
             </div>
 
             <br>
@@ -89,10 +63,6 @@
             <div class="button is-danger">Save Your Shibes!</div>
         </article>
 
-            <div class="stored-card">
-                <div id="job-buttons" class="card-body">
-                </div>
-            </div>
         </div>
 
         <div class="col-12 col-md-8">
