@@ -49,7 +49,12 @@ main {
 
 p {
     font-size: 1.2rem;
-    color: var(--dark);
+    /*color: var(--dark);*/
+}
+
+/* Changes the Job Title Header to this color */
+.message-header {
+    background-color: #ffe08a;
 }
 
 .btn {

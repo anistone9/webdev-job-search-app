@@ -81,7 +81,7 @@ function displayResults(jobResults) {
 
             var titleData = jobResults.results[i].name;
             jobTitle.innerHTML = 'Job Title: ' + titleData;
-            jobTitle.classList.add('message-header', 'has-background-is-danger')
+            jobTitle.classList.add('message-header', 'has-background-is-warning', 'has-text-dark')
 
             var companyData = jobResults.results[i].company.name;
             jobCompany.innerHTML = 'Company: ' + companyData;
@@ -148,7 +148,7 @@ function displayResults(jobResults) {
             };
 
             //Added border for results and append new div to the job-cards div
-            resultsList.classList.add('has-background-warning-light', 'border', 'has-text-warning-dark', 'my-3');
+            resultsList.classList.add('has-background-warning-light', 'border','has-text-warning-dark', 'my-3');
             jobsContainerEl.appendChild(resultsList);
         }
     }
