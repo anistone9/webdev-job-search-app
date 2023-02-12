@@ -81,34 +81,43 @@ function displayResults(jobResults) {
 
             var titleData = jobResults.results[i].name;
             jobTitle.innerHTML = 'Job Title: ' + titleData;
+            jobTitle.classList.add('message-header', 'has-background-is-danger')
 
             var companyData = jobResults.results[i].company.name;
             jobCompany.innerHTML = 'Company: ' + companyData;
+            jobCompany.classList.add('message-body', 'pb-0', 'pt-3', 'has-background-warning-light', 'has-text-warning-dark')
 
             var newDate = new Date(jobResults.results[i].publication_date);
             jobDate.innerHTML = 'Posting Date: ' + newDate.toLocaleDateString();
+            jobDate.classList.add('message-body', 'py-0', 'has-background-warning-light', 'has-text-warning-dark')
 
             var categoryData = jobResults.results[i].categories[0].name;
             for (var j = 1; j < jobResults.results[i].categories.length; j++) {
                 categoryData = categoryData + ', ' + jobResults.results[i].categories[j].name;
             }
             jobCategory.innerHTML = 'Job Category: ' + categoryData;
+            jobCategory.classList.add('message-body', 'py-0', 'has-background-warning-light', 'has-text-warning-dark')
 
             var levelData = jobResults.results[i].levels[0].name;
             jobLevel.innerHTML = 'Level: ' + levelData;
+            jobLevel.classList.add('message-body', 'py-0', 'has-background-warning-light', 'has-text-warning-dark')
 
             var descriptionData = jobResults.results[i].contents;
             jobDescription.innerHTML = 'Job Description: ' + descriptionData;
             jobDescription.setAttribute('id', "longDesc" + i);
             jobDescription.setAttribute("hidden", true);
+            jobDescription.classList.add('message-body', 'py-0', 'has-background-warning-light', 'has-text-warning-dark')
 
             var shortDescriptionData = jobResults.results[i].contents;
             truncatedDescription.innerHTML = 'Job Description: ' + shortDescriptionData.substring(0, 200);
+            truncatedDescription.classList.add('message-body', 'py-0', 'has-background-warning-light', 'has-text-warning-dark')
             truncatedDescription.setAttribute('id', "shortDesc" + i);
+
 
             var showMore = document.createElement('a');
             showMore.setAttribute('id', "toggleButton" + i);
             showMore.innerText = 'Show more ...';
+            showMore.classList.add('message-body', 'py-0', 'has-text-danger-dark')
 
             resultsList.append(jobTitle, jobCompany, jobDate, jobCategory, jobLevel, jobDescription, truncatedDescription, showMore);
 
@@ -139,7 +148,7 @@ function displayResults(jobResults) {
             };
 
             //Added border for results and append new div to the job-cards div
-            resultsList.classList.add('card', 'border');
+            resultsList.classList.add('has-background-warning-light', 'border', 'has-text-warning-dark', 'my-3');
             jobsContainerEl.appendChild(resultsList);
         }
     }
@@ -195,7 +204,7 @@ function storedSearchHandler(event) {
 // fetch second API (shibe)
 function getShibe(event) {
     console.log("getting shibe!")
-    if (event) {
+    if(event){
         event.preventDefault()
         event.stopPropogation()
     }
@@ -214,8 +223,39 @@ function getShibe(event) {
             document.getElementById("my-image").src = data[0];
 
         })
-    // return getShibe()
+        // return getShibe()
 }
+
+// Local Storeage for Shibe API
+// Returning a couple errors in Console Log, still need to debug this alittle bit further...
+var shibeBtn = $(".shibeBtn")
+
+shibeBtn.on("click", function(){
+
+    console.log(this); //save button
+
+    shibeImage = document.getElementById("my-image").src = data[0];
+    ImageData = getBase64Image('my-image');
+    localStorage.setItem("imgData", imgData);
+
+    function getBase64Image(img) {
+        var canvas = document.createElement("canvas");
+        canvas.width = img.width;
+        canvas.height = img.height;
+    
+        var ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0);
+    
+        var dataURL = canvas.toDataURL("image/png");
+    
+        return dataURL.replace(/^data:image\/(png|jpg);base64,/,"");
+    }
+    
+    var dataImage = localStorage.getItem('imgData');
+    savedShibeImg = document.getElementById('my-image');
+    savedShibeImg.src = "data:image/png;base64," + dataImage;
+
+})
 
 // function displayShibe(data) {
 //     console.log("displaying shibe")

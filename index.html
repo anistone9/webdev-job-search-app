@@ -17,7 +17,7 @@
         <div class="hero-body">
             <div class="container">
                 <h1 class="app-title">Web Dev Job Search</h1>
-                <h2 class="app-subtitle-center">The New Job of Your Future!!</h2>
+                <h2 class="app-subtitle has-text-centered">The New Job of Your Future!!</h2>
             </div>
         </div>
     </header>
@@ -49,21 +49,30 @@
             </div>
 
             <br>
-                   <!-- DISPLAY FOR SHIBE API -->
-        <article class="message is-warning">
-            <div class="message-header">
-                <p class="has-text-dark">Shibes for Hire!</p>
-            </div>
-            <div>
-                <img id="my-image" />
-            </div>
-            <div class="message-body">
-                Like this Shiba? Click the save button to see it next time you visit!!
-            </div>
-            <div class="button is-danger">Save Your Shibes!</div>
-        </article>
+            <!-- DISPLAY FOR SHIBE API -->
+            <article class="message is-warning border">
+                <div class="message-header">
+                    <p class="has-text-dark">Shibes for Hire!</p>
+                </div>
+                <div>
+                    <img id="my-image" />
+                </div>
+                <div class="message-body">
+                    Like this Shiba? Click the save button to see it next time you visit!!
+                </div>
+                <button class="button shibeBtn is-danger">Save Your Shibes!</button>
+            </article>
 
+            <div>
+                <img src="" id="my-image" />
+            </div>
+
+            <div class="stored-card">
+                <div id="job-buttons" class="card-body">
+                </div>
+            </div>
         </div>
+
 
         <div class="col-12 col-md-8">
             <div id="jobs-container" class="jobs-group"></div>
@@ -72,19 +81,21 @@
             <div id="job-cards" class="options-cards"></div>
         </div>
 
-     
-  
+
+
 
     </main>
 </body>
 
-<footer class="card-footer">
+<footer class="card-footer has-background-danger">
     <p class="card-footer-item">
-        <span>
+        <span class="has-text-light">
             This Website is powered with the 💗 of Shibes!
         </span>
     </p>
 </footer>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
 <script src="./assets/js/script.js"></script>
 
