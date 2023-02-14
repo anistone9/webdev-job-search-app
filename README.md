@@ -41,7 +41,7 @@ This website allows web developers to find remote jobs based on their specificat
 
 ## Demo
 
-![]()
+![Webdev-Remote-Job-Search-App-Demo](./assets/image/app-demo.gif)
 
 ## Deployed Link
 
