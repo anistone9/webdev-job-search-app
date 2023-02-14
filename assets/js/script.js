@@ -219,7 +219,7 @@ function getShibe(event) {
         event.stopPropogation()
     }
 
-    var shibesUrl = 'http://shibe.online/api/shibes?count=1&urls=true&httpsUrls=true'
+    var shibesUrl = 'https://shibe.online/api/shibes?count=1&urls=true&httpsUrls=true'
 
     fetch(shibesUrl)
         .then(function (response) {
