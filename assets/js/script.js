@@ -3,6 +3,8 @@ var searchJobEl = document.getElementById('categories');
 var jobsContainerEl = document.getElementById('jobs-container');
 var jobCardEl = document.getElementById('job-cards');
 var jobButtonsEl = document.getElementById('job-buttons');
+var storedCardEl = document.getElementById('stored-card');
+var previousSearches = document.getElementById('previous-searches');
 var searchCategory;
 
 // var shibePrintEl = document.getElementById('print-shibes');
@@ -17,17 +19,21 @@ var apiKey1 = "&api_key=0baa9fe5f5bebece6a9a3c670885ad97f3625e18b3148bb62e59c4df
 function formSubmitHandler(event) {
     event.preventDefault();
 
-    //Grabbing the search of the user and removing the leading and training white spaces from user input
-    var userSearch = searchJobEl.options[searchJobEl.selectedIndex].text;
-    searchCategory = userSearch;
-    console.log(userSearch);
+    //Check if a valid selection is made
+    if (searchJobEl.selectedIndex >= 0) {
 
-    //If statement to check if user presses Search without typing anything or without 
-    if (userSearch) {
-        getJobSearch(userSearch);
-        //Empty search box after running the initial search
-        searchJobEl.value = '';
-        jobsContainerEl.innerHTML = '';
+        //Grab the search of the user and remove the leading and training white spaces from user input
+        var userSearch = searchJobEl.options[searchJobEl.selectedIndex].text;
+        searchCategory = userSearch;
+        console.log(userSearch);
+
+        //If statement to check if user presses Search without typing anything or without 
+        if (userSearch) {
+            getJobSearch(userSearch);
+            //Empty search box after running the initial search
+            searchJobEl.value = '';
+            jobsContainerEl.innerHTML = '';
+        }
     }
 }
 
@@ -82,7 +88,7 @@ function displayResults(jobResults) {
 
             var titleData = jobResults.results[i].name;
             jobTitle.innerHTML = 'Job Title: ' + titleData;
-            jobTitle.classList.add('message-header', 'has-background-is-danger')
+            jobTitle.classList.add('message-header', 'has-background-is-warning', 'has-text-dark')
 
             var companyData = jobResults.results[i].company.name;
             jobCompany.innerHTML = 'Company: ' + companyData;
@@ -158,7 +164,8 @@ function displayResults(jobResults) {
 //Function to store any searches that the user clicks Show more ... on
 function storeSearch(resultsList) {
     //Create a variable that stores the job title that the user looked at (show more)
-    var viewedTitle = resultsList.children[0].innerHTML;
+    var viewedTitle = resultsList.children[0].innerText;
+    console.log(viewedTitle);
     //Create a variable that checks if that title already exists in local storage
     var titleExists = localStorage.getItem(viewedTitle);
     //if the title already exists, do nothing; if not, set item in local storage
@@ -170,6 +177,7 @@ function storeSearch(resultsList) {
         }
         localStorage.setItem(viewedTitle, JSON.stringify(resultsList.outerHTML));
         jobButtonsEl.innerHTML = '';
+        previousSearches.innerHTML = 'Recently viewed';
 
         //Create a button for stored and displayed searches
         for (var i = 0; i < localStorage.length; i++) {
@@ -185,12 +193,14 @@ function storeSearch(resultsList) {
 function retrieveSearch(viewedTitle) {
     var storedItem = localStorage.getItem(viewedTitle);
     storedItem = JSON.parse(storedItem);
+    console.log(storedItem);
     var resultsList = document.createElement('div');
     jobsContainerEl.append(resultsList);
     resultsList.outerHTML = storedItem;
     console.log(jobsContainerEl);
     var newToggle = jobsContainerEl.getElementsByTagName('a');
     console.log(newToggle);
+    console.log(newToggle[newToggle.length - 1]);
     newToggle[newToggle.length - 1].style.display = 'none';
 }
 
@@ -198,14 +208,13 @@ function retrieveSearch(viewedTitle) {
 function storedSearchHandler(event) {
     console.log(event);
     jobsContainerEl.innerHTML = '';
-    var retrievedSearch = event.path[0].innerText;
+    var retrievedSearch = event.srcElement.innerText;
     retrieveSearch(retrievedSearch);
 }
-
 // fetch second API (shibe)
 function getShibe(event) {
     console.log("getting shibe!")
-    if(event){
+    if (event) {
         event.preventDefault()
         event.stopPropogation()
     }
@@ -224,10 +233,11 @@ function getShibe(event) {
             document.getElementById("my-image").src = data[0];
 
         })
-        // return getShibe()
+    // return getShibe()
 }
 
 // Local Storeage for Shibe API
+<<<<<<< HEAD
 // Commented out for now as we work 
 // function loadStorage(){
 //     var storage = JSON.parse(localStorage.getItem("shiba"))
@@ -237,6 +247,50 @@ function getShibe(event) {
 //     if(!storage){
 //         localStorage.setItem("shiba", url)
 //         return
+=======
+// Returning a couple errors in Console Log, still need to debug this alittle bit further...
+var shibeBtn = $(".shibeBtn")
+
+shibeBtn.on("click", function () {
+
+    console.log(this); //save button
+
+    shibeImage = document.getElementById("my-image").src = data[0];
+    ImageData = getBase64Image('my-image');
+    localStorage.setItem("imgData", imgData);
+
+    function getBase64Image(img) {
+        var canvas = document.createElement("canvas");
+        canvas.width = img.width;
+        canvas.height = img.height;
+
+        var ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0);
+
+        var dataURL = canvas.toDataURL("image/png");
+
+        return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+    }
+
+    var dataImage = localStorage.getItem('imgData');
+    savedShibeImg = document.getElementById('my-image');
+    savedShibeImg.src = "data:image/png;base64," + dataImage;
+
+})
+
+// function displayShibe(data) {
+//     console.log("displaying shibe")
+//     console.log(data)
+//     var print = new XMLHttpRequest();
+//     print.onclick = function(event) {
+//         console.log(event)
+//         if (true) {
+//             var data = JSON.parse(this.responseText);
+//             // data.results[0].picture.large;
+//         }
+//         print.open("GET", getShibe());
+//         return getShibe();
+>>>>>>> 9885b3a82825c1e5ce953269c109fe03ceaf4649
 //     }
 //     for(let i=0; i< storage.length; i++){
 //         storageEl.innerHTML += `<li>Saved Shibes: ${storage[i].sb}</li>`
@@ -317,4 +371,6 @@ function getShibe(event) {
 
 // event listener
 searchFormEl.addEventListener('submit', formSubmitHandler);
-document.addEventListener('onload', getShibe)
+document.addEventListener('onload', getShibe);
+//Empty local storage each time the page is refreshed, to avoid getting stuck due to full storage (and forgetting about it)
+localStorage.clear();
