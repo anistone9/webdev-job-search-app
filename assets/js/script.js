@@ -237,6 +237,7 @@ function getShibe(event) {
 }
 
 // Local Storeage for Shibe API
+
 // Commented out for now as we work 
 // function loadStorage(){
 //     var storage = JSON.parse(localStorage.getItem("shiba"))
@@ -246,6 +247,20 @@ function getShibe(event) {
 //     if(!storage){
 //         localStorage.setItem("shiba", url)
 //         return
+
+// function displayShibe(data) {
+//     console.log("displaying shibe")
+//     console.log(data)
+//     var print = new XMLHttpRequest();
+//     print.onclick = function(event) {
+//         console.log(event)
+//         if (true) {
+//             var data = JSON.parse(this.responseText);
+//             // data.results[0].picture.large;
+//         }
+//         print.open("GET", getShibe());
+//         return getShibe();
+
 //     }
 //     for(let i=0; i< storage.length; i++){
 //         storageEl.innerHTML += `<li>Saved Shibes: ${storage[i].sb}</li>`
