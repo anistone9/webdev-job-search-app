@@ -9,9 +9,6 @@ var searchCategory;
 
 // var shibePrintEl = document.getElementById('print-shibes');
 
-// var api = 'https://www.themuse.com/api/public/jobs?q=';
-// var jobSearch = "";
-// var pageLoad = '&page=1&descending=true';
 // var apiKey = "daed771fd0ad16dbb3a9de8575ba1b7d7160d8d32ea4d206975cbbe4464934ce";
 var apiKey1 = "&api_key=0baa9fe5f5bebece6a9a3c670885ad97f3625e18b3148bb62e59c4df39a2780a";
 
@@ -324,15 +321,15 @@ function getShibe(event) {
 //         var canvas = document.createElement("canvas");
 //         canvas.width = img.width;
 //         canvas.height = img.height;
-    
+
 //         var ctx = canvas.getContext("2d");
 //         ctx.drawImage(img, 0, 0);
-    
+
 //         var dataURL = canvas.toDataURL("image/png");
-    
+
 //         return dataURL.replace(/^data:image\/(png|jpg);base64,/,"");
 //     }
-    
+
 //     var dataImage = localStorage.getItem('imgData');
 //     savedShibeImg = document.getElementById('my-image');
 //     savedShibeImg.src = "data:image/png;base64," + dataImage;
