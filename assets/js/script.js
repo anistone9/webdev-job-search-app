@@ -324,15 +324,15 @@ function getShibe(event) {
 //         var canvas = document.createElement("canvas");
 //         canvas.width = img.width;
 //         canvas.height = img.height;
-    
+
 //         var ctx = canvas.getContext("2d");
 //         ctx.drawImage(img, 0, 0);
-    
+
 //         var dataURL = canvas.toDataURL("image/png");
-    
+
 //         return dataURL.replace(/^data:image\/(png|jpg);base64,/,"");
 //     }
-    
+
 //     var dataImage = localStorage.getItem('imgData');
 //     savedShibeImg = document.getElementById('my-image');
 //     savedShibeImg.src = "data:image/png;base64," + dataImage;
