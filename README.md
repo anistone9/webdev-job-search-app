@@ -1,6 +1,26 @@
 # Webdev-Remote-Job-Search-App
 This website allows web developers to find remote jobs based on their specifications such as: part-time, full-time, full-stack, etc…
 
+# Table of Contents
+- [User-Story](#user-story)
+- [Usage](#usage)
+- [Acknowledgements](#acknowledgments)
+- [Authors](#authors)
+- [Demos](#demo)
+- [Deployed-Link](#deployed-link)
+- [Features](#features)
+- [License](#liscense)
+
+# User Story
+ - AS A person searching for a job
+ - I WANT TO be able to seach for jobs based on my specific job category
+-  SO THAT I can find a job listing that applies to my needs 
+
+# Usage
+- To use this Job Search Application, you can use the drop down menu to select your desired job category and then press the "search" button. From there, you will be provided with 10 job listing based on your category. These job listings will show information on the job such as the job title, company, posting date, and job level. For more information on these jobs, there is a "show more" button on the bottom of the box, allowing you to expand the box and read more about the job. If you want to search for something else, your recent searches will be displayed off to the side for you to look back on.
+- Need to find someone else to hire for a job? Each time you refresh the page you will be displayed with a shiba inu who is up for hire! They are there to provide you some companionship on your job searching journey!
+
+
 ## Acknowledgments
 
 -[The Muse Job Search API Documentation](https://www.themuse.com/developers/api/v2)
@@ -17,7 +37,7 @@ This website allows web developers to find remote jobs based on their specificat
 
 -[@alexiskeet](https://github.com/alexiskeet)
 
--[anistone9](https://github.com/anistone9)
+-[@anistone9](https://github.com/anistone9)
 
 ## Demo
 
@@ -29,13 +49,15 @@ This website allows web developers to find remote jobs based on their specificat
 
 ## Features
 
--
+- Drop down menu and search button with options for different job categories.
 
--
+- On load box that displays shibes that are up for hire. 
 
--
+- Display of search results based on your selected job category.
 
-## Liscense
+- Local storage that displays recently viewed job searches.
+
+## License
 
 MIT License
 
