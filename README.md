@@ -45,7 +45,8 @@ This website allows web developers to find remote jobs based on their specificat
 
 ## Deployed Link
 
--[Webdev-Remote-Job-Search-App]()
+- [Webdev-Remote-Job-Search-App](https://macaroniketchup.github.io/Webdev-Remote-Job-Search-App/)
+- [GitHub-Repo](https://github.com/MacaroniKetchup/Webdev-Remote-Job-Search-App.git)
 
 ## Features
 
