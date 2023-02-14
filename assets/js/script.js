@@ -6,6 +6,7 @@ var jobButtonsEl = document.getElementById('job-buttons');
 var storedCardEl = document.getElementById('stored-card');
 var previousSearches = document.getElementById('previous-searches');
 var searchCategory;
+
 // var shibePrintEl = document.getElementById('print-shibes');
 
 // var api = 'https://www.themuse.com/api/public/jobs?q=';
@@ -236,6 +237,17 @@ function getShibe(event) {
 }
 
 // Local Storeage for Shibe API
+<<<<<<< HEAD
+// Commented out for now as we work 
+// function loadStorage(){
+//     var storage = JSON.parse(localStorage.getItem("shiba"))
+//     console.log(storage)
+//     var storageEl = getShibe
+//     //document.getElementById("my-image")
+//     if(!storage){
+//         localStorage.setItem("shiba", url)
+//         return
+=======
 // Returning a couple errors in Console Log, still need to debug this alittle bit further...
 var shibeBtn = $(".shibeBtn")
 
@@ -278,8 +290,84 @@ shibeBtn.on("click", function () {
 //         }
 //         print.open("GET", getShibe());
 //         return getShibe();
+>>>>>>> 9885b3a82825c1e5ce953269c109fe03ceaf4649
 //     }
+//     for(let i=0; i< storage.length; i++){
+//         storageEl.innerHTML += `<li>Saved Shibes: ${storage[i].sb}</li>`
+//      }
+//      console.log("stored")
 // }
+
+
+// function saveStorage(newValue){
+//     var storage = JSON.parse(localStorage.getItem("shiba"))
+//     console.log("got storage: ", storage)
+//     storage.push(newValue)
+//     console.log("Added to storage")
+//     console.log(storage)
+//     localStorage.setItem("shiba", url(storage))
+//     loadStorage()
+// }
+
+
+
+// function handleShibe(event){
+//     event.preventDefault()
+//     console.log("trigerred")
+//     var inputEl = getShibe
+//     //document.getElementById("store-shibe")
+//     inputEl = " "
+//     if(!inputEl.value){
+//         return
+//     }
+//     console.log("Shibe went through!")
+//     var thingToBeSaved = {
+//         sb: inputEl.value
+//     }
+//     saveStorage(thingToBeSaved)
+//     inputEl.value = ""   
+// }
+
+// document.getElementById("button-shibe").addEventListener("click", handleShibe)
+
+// document.getElementById("reset-shibe").addEventListener("click", function(event){
+//     event.preventDefault()
+//     localStorage.removeItem("shiba")
+//     loadStorage()
+// })
+
+
+// loadStorage()
+
+// Returning a couple errors in Console Log, still need to debug this alittle bit further...
+// var shibeBtn = $(".shibeBtn")
+
+// shibeBtn.on("click", function(){
+
+//     console.log(this); //save button
+
+//     shibeImage = document.getElementById("my-image").src = data[0];
+//     ImageData = getBase64Image('my-image');
+//     localStorage.setItem("imgData", imgData);
+
+//     function getBase64Image(img) {
+//         var canvas = document.createElement("canvas");
+//         canvas.width = img.width;
+//         canvas.height = img.height;
+    
+//         var ctx = canvas.getContext("2d");
+//         ctx.drawImage(img, 0, 0);
+    
+//         var dataURL = canvas.toDataURL("image/png");
+    
+//         return dataURL.replace(/^data:image\/(png|jpg);base64,/,"");
+//     }
+    
+//     var dataImage = localStorage.getItem('imgData');
+//     savedShibeImg = document.getElementById('my-image');
+//     savedShibeImg.src = "data:image/png;base64," + dataImage;
+
+// })
 
 // event listener
 searchFormEl.addEventListener('submit', formSubmitHandler);
