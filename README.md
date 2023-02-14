@@ -1,5 +1,6 @@
 # Webdev-Remote-Job-Search-App
-This website allows web developers to find remote jobs based on their specifications such as: part-time, full-time, full-stack, etc…
+This website allows web developers to search for jobs based on specific categories they select. These categories include: Computer and IT, Data and Analytics, Data Science, Science and Engineering, Software Engineering, Design and UX.   
+The application utilizes a job search API to pull data related to the tech field, then save viewed results in the local storage and display those results on the screen. All this while adorable shibes provide encouragement to continue searching for the ideal web dev job.
 
 # Table of Contents
 - [User-Story](#user-story)
