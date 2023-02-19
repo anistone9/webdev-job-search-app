@@ -26,28 +26,22 @@ The application utilizes a job search API to pull data related to the tech field
 
 -[The Muse Job Search API Documentation](https://www.themuse.com/developers/api/v2)
 
--[Random Shibe Image Generator API](https://shibe.online/)
-
--[Bulma a Bootstrap Alternative](https://bulma.io/documentation/)
-
--[Bulma CSS Framework Crash Course](https://www.youtube.com/watch?v=IiPQYQT2-wg)
-
 ## Authors
+[@anistone9](https://github.com/anistone9)
 
--[@MacaroniKetchup](https://github.com/MacaroniKetchup)
+Forked from the following MIT-licensed group project:
+[Webdev-Remote-Job-Search-App](https://macaroniketchup.github.io/Webdev-Remote-Job-Search-App/)
+[GitHub-Repo](https://github.com/MacaroniKetchup/Webdev-Remote-Job-Search-App.git)
 
--[@alexiskeet](https://github.com/alexiskeet)
-
--[@anistone9](https://github.com/anistone9)
+Contributors on this group project:
+[@MacaroniKetchup](https://github.com/MacaroniKetchup)
+[@alexiskeet](https://github.com/alexiskeet)
 
 ## Demo
 
-![Webdev-Remote-Job-Search-App-Demo](./assets/image/app-demo.gif)
 
 ## Deployed Link
 
-- [Webdev-Remote-Job-Search-App](https://macaroniketchup.github.io/Webdev-Remote-Job-Search-App/)
-- [GitHub-Repo](https://github.com/MacaroniKetchup/Webdev-Remote-Job-Search-App.git)
 
 ## Features
 
@@ -63,7 +57,7 @@ The application utilizes a job search API to pull data related to the tech field
 
 MIT License
 
-Copyright (c) 2023 MacaroniKetchup, anistone9, alexiskeet
+Copyright (c) 2023 
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

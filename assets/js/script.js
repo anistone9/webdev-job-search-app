@@ -1,15 +1,10 @@
 var searchFormEl = document.getElementById('search-form');
-var searchJobEl = document.getElementById('categories');
-var jobsContainerEl = document.getElementById('jobs-container');
-var jobCardEl = document.getElementById('job-cards');
+var categoriesSelectEl = document.getElementById('categories');
+var resultsContainerDivEl = document.getElementById('results-container');
 var jobButtonsEl = document.getElementById('job-buttons');
-var storedCardEl = document.getElementById('stored-card');
 var previousSearches = document.getElementById('previous-searches');
 var searchCategory;
 
-// var shibePrintEl = document.getElementById('print-shibes');
-
-// var apiKey = "daed771fd0ad16dbb3a9de8575ba1b7d7160d8d32ea4d206975cbbe4464934ce";
 var apiKey1 = "&api_key=0baa9fe5f5bebece6a9a3c670885ad97f3625e18b3148bb62e59c4df39a2780a";
 
 // function for event handler (search button) to retrieve user input
@@ -17,162 +12,165 @@ function formSubmitHandler(event) {
     event.preventDefault();
 
     //Check if a valid selection is made
-    if (searchJobEl.selectedIndex >= 0) {
+    if (categoriesSelectEl.selectedIndex >= 0) {
 
-        //Grab the search of the user and remove the leading and training white spaces from user input
-        var userSearch = searchJobEl.options[searchJobEl.selectedIndex].text;
-        searchCategory = userSearch;
-        console.log(userSearch);
+        //Grab the search of the user and remove the leading and trailing white spaces from user input
+        var selectedCategory = categoriesSelectEl.options[categoriesSelectEl.selectedIndex].text;
+        searchCategory = selectedCategory;
 
         //If statement to check if user presses Search without typing anything or without 
-        if (userSearch) {
-            getJobSearch(userSearch);
+        if (selectedCategory) {
+            fetchJobCategory(selectedCategory);
             //Empty search box after running the initial search
-            searchJobEl.value = '';
-            jobsContainerEl.innerHTML = '';
+            categoriesSelectEl.value = '';
+
+            //clean up the results page when a new search is initiated
+            resultsContainerDivEl.innerHTML = '';
         }
     }
 }
 
-// function to fetch first API (job search)
-function getJobSearch(userJobs) {
+// function to fetch API (job search)
+function fetchJobCategory(selectedCategory) {
+    var fetchUrl = `https://www.themuse.com/api/public/jobs?category=${selectedCategory}&page=1&descending=true` + apiKey1
 
-    //    var jobsUrl = api + userJobs + pageLoad + apiKey1
-    var jobsUrl = `https://www.themuse.com/api/public/jobs?category=${userJobs}&page=1&descending=true` + apiKey1
-
-    fetch(jobsUrl)
+    fetch(fetchUrl)
         .then(function (response) {
             if (response.ok) {
-                console.log(response);
-                response.json().then(function (jobsData) {
-                    console.log(jobsData);
-                    displayResults(jobsData);
+                response.json().then(function (jobsResults) {
+                    displayResults(jobsResults);
                 });
+                //Result received but not ok alert
             } else {
                 alert('Error: ' + response.statusText);
             }
         })
+        //No result received alert
         .catch(function (error) {
-            console.log(error);
             alert('Unable to reach jobs url');
         })
 }
 
 // function to display results
 function displayResults(jobResults) {
-    //If user typed incorrect entry, return 
+    //If no results are pulled from api, return (end the function and return to the line where it was called from)
     if (jobResults.length === 0) {
         return;
     }
 
     var titleEl = document.createElement('h2');
     titleEl.innerHTML = 'Search results: ' + searchCategory;
-    jobsContainerEl.appendChild(titleEl);
+    resultsContainerDivEl.appendChild(titleEl);
 
     for (var i = 0; i < 10; i++) {
-        //if statement to deal with errors if there are less than 10 results
-        if (jobResults.results[i]) {
-            //Create a new div for all the results, in order to add a border and style the list
-            var resultsList = document.createElement('div');
-
-            var jobTitle = document.createElement('p');
-            var jobCompany = document.createElement('p');
-            var jobDate = document.createElement('p');
-            var jobCategory = document.createElement('p');
-            var jobLevel = document.createElement('p');
-            var jobDescription = document.createElement('p');
-            var truncatedDescription = document.createElement('p');
-
-            var titleData = jobResults.results[i].name;
-            jobTitle.innerHTML = 'Job Title: ' + titleData;
-            jobTitle.classList.add('message-header', 'has-background-is-warning', 'has-text-dark')
-
-            var companyData = jobResults.results[i].company.name;
-            jobCompany.innerHTML = 'Company: ' + companyData;
-            jobCompany.classList.add('message-body', 'pb-2', 'pt-3', 'has-background-warning-light', 'has-text-warning-dark')
-
-            var newDate = new Date(jobResults.results[i].publication_date);
-            jobDate.innerHTML = 'Posting Date: ' + newDate.toLocaleDateString();
-            jobDate.classList.add('message-body', 'py-2', 'has-background-warning-light', 'has-text-warning-dark')
-
-            var categoryData = jobResults.results[i].categories[0].name;
-            for (var j = 1; j < jobResults.results[i].categories.length; j++) {
-                categoryData = categoryData + ', ' + jobResults.results[i].categories[j].name;
-            }
-            jobCategory.innerHTML = 'Job Category: ' + categoryData;
-            jobCategory.classList.add('message-body', 'py-2', 'has-background-warning-light', 'has-text-warning-dark')
-
-            var levelData = jobResults.results[i].levels[0].name;
-            jobLevel.innerHTML = 'Level: ' + levelData;
-            jobLevel.classList.add('message-body', 'py-2', 'has-background-warning-light', 'has-text-warning-dark')
-
-            var descriptionData = jobResults.results[i].contents;
-            jobDescription.innerHTML = 'Job Description: ' + descriptionData;
-            jobDescription.setAttribute('id', "longDesc" + i);
-            jobDescription.setAttribute("hidden", true);
-            jobDescription.classList.add('message-body', 'py-2', 'has-background-warning-light', 'has-text-warning-dark')
-
-            var shortDescriptionData = jobResults.results[i].contents;
-            truncatedDescription.innerHTML = 'Job Description: ' + shortDescriptionData.substring(0, 200);
-            truncatedDescription.classList.add('message-body', 'py-2', 'has-background-warning-light', 'has-text-warning-dark')
-            truncatedDescription.setAttribute('id', "shortDesc" + i);
-
-
-            var showMore = document.createElement('a');
-            showMore.setAttribute('id', "toggleButton" + i);
-            showMore.innerText = 'Show more ...';
-            showMore.classList.add('message-body', 'py-2', 'has-text-danger-dark')
-
-            resultsList.append(jobTitle, jobCompany, jobDate, jobCategory, jobLevel, jobDescription, truncatedDescription, showMore);
-
-            //toggle between no display and display block. If my display is block, make it none; if it's none, make it block
-            //this function runs after the results are displayed, to show short description and allow the user to expand it if the Show more ...button is clicked
-            showMore.onclick = function (event) {
-                console.log(event);
-                //Create a variable that contains the Show more... you clicked on 
-                var toggleButton = event.target;
-                console.log(toggleButton);
-                var toggleIdentifier = toggleButton.id.substring(12);
-                console.log(toggleIdentifier);
-                var longDescription = document.getElementById('longDesc' + toggleIdentifier);
-                console.log(longDescription);
-                var shortDescription = document.getElementById('shortDesc' + toggleIdentifier);
-                console.log(shortDescription);
-
-                if (window.getComputedStyle(shortDescription).display === 'none') {
-                    shortDescription.style.display = 'block';
-                    longDescription.style.display = 'none';
-                    toggleButton.innerText = "Show more ...";
-                } else {
-                    shortDescription.style.display = 'none';
-                    longDescription.style.display = 'block';
-                    toggleButton.innerText = "Show less ...";
-                    storeSearch(toggleButton.parentElement);
-                }
-            };
-
-            //Added border for results and append new div to the job-cards div
-            resultsList.classList.add('has-background-warning-light', 'border', 'has-text-warning-dark', 'my-3');
-            jobsContainerEl.appendChild(resultsList);
+        //if statement to handle less than 10 results; skip empty results (within function use return, within 'for' loop use continue)
+        if (jobResults.results[i] == null) {
+            continue;
         }
+
+        //Create a variable to hold single job result
+        var jobResult = jobResults.results[i];
+        createResultsDiv(jobResult, i);
     }
 }
 
+function createResultsDiv(jobResult, i) {
+    //Create a new div for each result, in order to add a border and style the list
+    var resultsList = document.createElement('div');
+
+    var jobTitle = document.createElement('p');
+    var jobCompany = document.createElement('p');
+    var jobDate = document.createElement('p');
+    var jobCategory = document.createElement('p');
+    var jobLevel = document.createElement('p');
+    var jobDescription = document.createElement('p');
+    var truncatedDescription = document.createElement('p');
+
+    var titleData = jobResult.name;
+    jobTitle.innerHTML = 'Job Title: ' + titleData;
+
+    var companyData = jobResult.company.name;
+    jobCompany.innerHTML = 'Company: ' + companyData;
+
+    var newDate = new Date(jobResult.publication_date);
+    jobDate.innerHTML = 'Posting Date: ' + newDate.toLocaleDateString();
+
+    var categoryData = jobResult.categories[0].name;
+    for (var j = 1; j < jobResult.categories.length; j++) {
+        categoryData = categoryData + ', ' + jobResult.categories[j].name;
+    }
+    jobCategory.innerHTML = 'Job Category: ' + categoryData;
+
+    var levelData = jobResult.levels[0].name;
+    jobLevel.innerHTML = 'Level: ' + levelData;
+
+    var descriptionData = jobResult.contents;
+    jobDescription.innerHTML = 'Job Description: ' + descriptionData;
+    jobDescription.setAttribute('id', "longDesc" + i);
+    jobDescription.setAttribute("hidden", true);
+
+    var shortDescriptionData = jobResult.contents;
+    truncatedDescription.innerHTML = 'Job Description: ' + shortDescriptionData.substring(0, 200);
+    truncatedDescription.setAttribute('id', "shortDesc" + i);
+
+    var showMore = document.createElement('a');
+    showMore.setAttribute('id', "toggleButton" + i);
+    showMore.innerText = 'Show more ...';
+
+    //toggle between no display and display block. If my display is block, make it none; if it's none, make it block
+    //this function runs after the results are displayed, to show short description and allow the user to expand it if the Show more ...button is clicked
+    showMore.onclick = function (event) {
+        //Create a variable that contains the Show more... you clicked on 
+        var toggleButton = event.target;
+        var toggleIdentifier = toggleButton.id.substring(12);
+        var longDescription = document.getElementById('longDesc' + toggleIdentifier);
+        var shortDescription = document.getElementById('shortDesc' + toggleIdentifier);
+
+        if (window.getComputedStyle(shortDescription).display === 'none') {
+            shortDescription.style.display = 'block';
+            longDescription.style.display = 'none';
+            toggleButton.innerText = "Show more ...";
+        } else {
+            shortDescription.style.display = 'none';
+            longDescription.style.display = 'block';
+            toggleButton.innerText = "Show less ...";
+
+            //Create a div to pull the data from the entire result card (the parent of the toggle button)
+            var jobResultDiv = toggleButton.parentElement;
+            storeSearch(jobResultDiv);
+        }
+    };
+
+    resultsList.append(jobTitle, jobCompany, jobDate, jobCategory, jobLevel, jobDescription, truncatedDescription, showMore);
+
+    //Add border for results and append new div to the job-cards div
+    resultsList.classList.add('has-background-warning-light', 'border');
+    resultsContainerDivEl.appendChild(resultsList);
+}
+
+//Button for the stored and displayed search item
+function viewedResultButtonHandler(event) {
+    //Clear results from right side of screen, when the stored-search button is clicked for a specific result
+    resultsContainerDivEl.innerHTML = '';
+    //Job title text, saved as the key in local storage
+    var previouslyViewedResult = event.srcElement.innerText;
+    retrieveSearch(previouslyViewedResult);
+}
+
 //Function to store any searches that the user clicks Show more ... on
-function storeSearch(resultsList) {
+function storeSearch(jobResultDiv) {
     //Create a variable that stores the job title that the user looked at (show more)
-    var viewedTitle = resultsList.children[0].innerText;
-    console.log(viewedTitle);
+    var viewedTitle = jobResultDiv.children[0].innerText;
     //Create a variable that checks if that title already exists in local storage
     var titleExists = localStorage.getItem(viewedTitle);
-    //if the title already exists, do nothing; if not, set item in local storage
-    //if there are 5 titles, delete the first
+    //if the title already exists, do nothing; if not, check to see if there are 5 title in storage, and if so, delete the 5th one; then add title to storage
     if (titleExists) {
+        return;
     } else {
         if (localStorage.key(4)) {
             localStorage.removeItem(localStorage.key(4));
         }
-        localStorage.setItem(viewedTitle, JSON.stringify(resultsList.outerHTML));
+        localStorage.setItem(viewedTitle, JSON.stringify(jobResultDiv.outerHTML));
         jobButtonsEl.innerHTML = '';
         previousSearches.innerHTML = 'Recently viewed';
 
@@ -182,162 +180,25 @@ function storeSearch(resultsList) {
             searchButton.textContent = localStorage.key(i);
             searchButton.classList.add('btn');
             jobButtonsEl.appendChild(searchButton);
-            jobButtonsEl.addEventListener('click', storedSearchHandler);
+            jobButtonsEl.addEventListener('click', viewedResultButtonHandler);
         }
     }
 }
 
-function retrieveSearch(viewedTitle) {
-    var storedItem = localStorage.getItem(viewedTitle);
+function retrieveSearch(previouslyViewedResult) {
+    var storedItem = localStorage.getItem(previouslyViewedResult);
     storedItem = JSON.parse(storedItem);
-    console.log(storedItem);
+
     var resultsList = document.createElement('div');
-    jobsContainerEl.append(resultsList);
+    resultsContainerDivEl.append(resultsList);
     resultsList.outerHTML = storedItem;
-    console.log(jobsContainerEl);
-    var newToggle = jobsContainerEl.getElementsByTagName('a');
-    console.log(newToggle);
-    console.log(newToggle[newToggle.length - 1]);
+
+    var newToggle = resultsContainerDivEl.getElementsByTagName('a');
     newToggle[newToggle.length - 1].style.display = 'none';
 }
 
-//Button for the stored and displayed search item
-function storedSearchHandler(event) {
-    console.log(event);
-    jobsContainerEl.innerHTML = '';
-    var retrievedSearch = event.srcElement.innerText;
-    retrieveSearch(retrievedSearch);
-}
-// fetch second API (shibe)
-function getShibe(event) {
-    console.log("getting shibe!")
-    if (event) {
-        event.preventDefault()
-        event.stopPropogation()
-    }
-
-    var shibesUrl = 'https://shibe.online/api/shibes?count=1&urls=true&httpsUrls=true'
-
-    fetch(shibesUrl)
-        .then(function (response) {
-            console.log(response)
-            return response.json()
-        })
-        .then(function (data) {
-            // console.log
-            console.log("shibe-fetch", data)
-            // displayShibe(data[0])
-            document.getElementById("my-image").src = data[0];
-
-        })
-    // return getShibe()
-}
-
-// Local Storeage for Shibe API
-
-// Commented out for now as we work 
-// function loadStorage(){
-//     var storage = JSON.parse(localStorage.getItem("shiba"))
-//     console.log(storage)
-//     var storageEl = getShibe
-//     //document.getElementById("my-image")
-//     if(!storage){
-//         localStorage.setItem("shiba", url)
-//         return
-
-// function displayShibe(data) {
-//     console.log("displaying shibe")
-//     console.log(data)
-//     var print = new XMLHttpRequest();
-//     print.onclick = function(event) {
-//         console.log(event)
-//         if (true) {
-//             var data = JSON.parse(this.responseText);
-//             // data.results[0].picture.large;
-//         }
-//         print.open("GET", getShibe());
-//         return getShibe();
-
-//     }
-//     for(let i=0; i< storage.length; i++){
-//         storageEl.innerHTML += `<li>Saved Shibes: ${storage[i].sb}</li>`
-//      }
-//      console.log("stored")
-// }
-
-
-// function saveStorage(newValue){
-//     var storage = JSON.parse(localStorage.getItem("shiba"))
-//     console.log("got storage: ", storage)
-//     storage.push(newValue)
-//     console.log("Added to storage")
-//     console.log(storage)
-//     localStorage.setItem("shiba", url(storage))
-//     loadStorage()
-// }
-
-
-
-// function handleShibe(event){
-//     event.preventDefault()
-//     console.log("trigerred")
-//     var inputEl = getShibe
-//     //document.getElementById("store-shibe")
-//     inputEl = " "
-//     if(!inputEl.value){
-//         return
-//     }
-//     console.log("Shibe went through!")
-//     var thingToBeSaved = {
-//         sb: inputEl.value
-//     }
-//     saveStorage(thingToBeSaved)
-//     inputEl.value = ""   
-// }
-
-// document.getElementById("button-shibe").addEventListener("click", handleShibe)
-
-// document.getElementById("reset-shibe").addEventListener("click", function(event){
-//     event.preventDefault()
-//     localStorage.removeItem("shiba")
-//     loadStorage()
-// })
-
-
-// loadStorage()
-
-// Returning a couple errors in Console Log, still need to debug this alittle bit further...
-// var shibeBtn = $(".shibeBtn")
-
-// shibeBtn.on("click", function(){
-
-//     console.log(this); //save button
-
-//     shibeImage = document.getElementById("my-image").src = data[0];
-//     ImageData = getBase64Image('my-image');
-//     localStorage.setItem("imgData", imgData);
-
-//     function getBase64Image(img) {
-//         var canvas = document.createElement("canvas");
-//         canvas.width = img.width;
-//         canvas.height = img.height;
-
-//         var ctx = canvas.getContext("2d");
-//         ctx.drawImage(img, 0, 0);
-
-//         var dataURL = canvas.toDataURL("image/png");
-
-//         return dataURL.replace(/^data:image\/(png|jpg);base64,/,"");
-//     }
-
-//     var dataImage = localStorage.getItem('imgData');
-//     savedShibeImg = document.getElementById('my-image');
-//     savedShibeImg.src = "data:image/png;base64," + dataImage;
-
-// })
-
-// event listener
+// event listeners
 searchFormEl.addEventListener('submit', formSubmitHandler);
-document.addEventListener('onload', getShibe);
+
 //Empty local storage each time the page is refreshed, to avoid getting stuck due to full storage (and forgetting about it)
 localStorage.clear();

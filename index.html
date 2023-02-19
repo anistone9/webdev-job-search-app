@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">-->
     <link rel="stylesheet" href="./assets/css/style.css" />
-    <title>Web Dev Remote Job Search & Some Shibes</title>
+    <title>Web Dev Remote Job Search</title>
 </head>
 
 
-<body class="flex-column min-100-vh has-background-success-dark" onload="javascript:getShibe()">
+<body class="flex-column min-100-vh has-background-success-dark">
     <header class="hero is-small is-danger">
         <!-- <h1 class="app-title"></i>Web Dev Remote Job Search</h1> -->
         <div class="hero-body">
@@ -52,24 +52,6 @@
             </div>
 
             <br>
-            <!-- DISPLAY FOR SHIBE API -->
-            <article class="message is-warning border" id="store-shibe">
-                <div class="message-header">
-                    <p class="py-0 has-text-dark has-text-centered">Shibes for Hire!</p>
-                </div>
-                <div>
-                    <img id="my-image" />
-                </div>
-                <!-- <div class="message-body">
-                    Like this Shiba? Click the save button to see it next time you visit!!
-                </div> -->
-                <!-- <button class="button shibeBtn is-danger" id="button-shibe">Save Your Shibes!</button>
-                <button class="button resetBtn is-danger" id="reset-shibe">Reset Your Shibes!</button> -->
-            </article>
-
-            <div>
-                <img src="" id="my-image" />
-            </div>
 
             <div class="stored-card">
                 <div id="job-buttons" class="card-body">
@@ -78,22 +60,11 @@
         </div>
 
         <div class="col-12 col-md-8">
-            <div id="jobs-container" class="jobs-group"></div>
-
-            <div id="subtitle" class="jobs-subtitle"></div>
-            <div id="job-cards" class="options-cards"></div>
+            <div id="results-container" class="jobs-group"></div>
         </div>
 
     </main>
 </body>
-
-<footer class="card-footer has-background-danger">
-    <p class="card-footer-item">
-        <span class="has-text-light">
-            This Website is powered with the 💗 of Shibes!
-        </span>
-    </p>
-</footer>
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
