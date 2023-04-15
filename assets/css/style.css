@@ -1,10 +1,10 @@
 :root {
+    --border-radius: .1rem;
     --primary: #3e4048;
     --secondary: #649587;
     --tertiary: #c2d1df;
     --light-dark: #41809b;
     --dark: #363636;
-    --border-radius: .1rem;
 }
 
 * {
@@ -12,13 +12,13 @@
 }
 
 body {
-    background-color: var(--primary);
     margin: 0;
     padding: 0;
     font-family: "IBM Plex Sans", sans-serif;
-    color: var(--dark);
     line-height: 1.5;
     font-size: 16px;
+    color: var(--dark);
+    background-color: var(--primary);
 }
 
 h1,
@@ -29,8 +29,8 @@ h5,
 h6 {
     font-weight: 700;
     margin: 0;
-    color: var(--tertiary);
     line-height: 1.25;
+    color: var(--tertiary);
 }
 
 h2 {
@@ -49,23 +49,20 @@ main {
 
 p {
     font-size: 1.2rem;
-    /*color: var(--dark);*/
     padding-left: 30px;
     padding-right: 30px;
 }
 
-li{
+li {
     padding-left: 30px;
     padding-right: 30px;
 }
 
-b{
+b {
     padding-left: 30px;
     padding-right: 30px;
 }
 
-
-/* Changes the Job Title Header to this color */
 .message-header {
     background-color: #ffe08a;
 }
@@ -81,21 +78,21 @@ b{
     font-weight: bold;
     border: none;
     outline: none;
-    background-color: var(--light-dark);
     transform: translate(-1px, -1px);
+    background-color: var(--light-dark);
 }
 
 .btn:hover {
-    color: var(--primary);
-    background-color: var(--tertiary);
     transform: translate(0, 0);
     box-shadow: 2px 2px var(--dark);
+    color: var(--primary);
+    background-color: var(--tertiary);
 }
 
 .hero {
     padding: 3% 4%;
-    background-color: var(--dark);
     color: var(--primary);
+    background-color: var(--dark);
 }
 
 .hero p {
@@ -104,12 +101,12 @@ b{
 
 .app-title {
     font-size: 3rem;
-    color: var(--tertiary);
     padding: 0 10px;
     display: flex;
     justify-content: center;
     border-radius: var(--border-radius);
     box-shadow: 6px 5px var(--light-dark);
+    color: var(--tertiary);
 }
 
 /* CARDS */
@@ -124,16 +121,16 @@ b{
     padding: 1%;
     border-style: solid;
     border-color: transparent;
-    background-color: #fffaeb;
-    color: #363636;
     display: inline-block;
     width: 100%;
+    background-color: #fffaeb;
+    color: #363636;
 }
 
 .card-header {
-    color: var(--tertiary);
     padding: 1.5% 0% 0% 7%;
     font-size: 1.7rem;
+    color: var(--tertiary);
 }
 
 /* FORM */
@@ -146,10 +143,9 @@ b{
 
 .border {
     border-style: solid;
-    /*changed border color here */
-    border-color: #c898ce;
     border-width: 3px;
     border-radius: 5px;
+    border-color: #c898ce;
 }
 
 

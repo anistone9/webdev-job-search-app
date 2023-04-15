@@ -88,34 +88,42 @@ function createResultsDiv(jobResult, i) {
 
     var titleData = jobResult.name;
     jobTitle.innerHTML = 'Job Title: ' + titleData;
+    jobTitle.classList.add('message-header', 'has-background-info', 'has-text-dark')
 
     var companyData = jobResult.company.name;
     jobCompany.innerHTML = 'Company: ' + companyData;
+    jobCompany.classList.add('message-body', 'pb-2', 'pt-3', 'has-background-info-light', 'has-text-dark')
 
     var newDate = new Date(jobResult.publication_date);
     jobDate.innerHTML = 'Posting Date: ' + newDate.toLocaleDateString();
+    jobDate.classList.add('message-body', 'py-2', 'has-background-info-light', 'has-text-dark')
 
     var categoryData = jobResult.categories[0].name;
     for (var j = 1; j < jobResult.categories.length; j++) {
         categoryData = categoryData + ', ' + jobResult.categories[j].name;
     }
     jobCategory.innerHTML = 'Job Category: ' + categoryData;
+    jobCategory.classList.add('message-body', 'py-2', 'has-background-info-light', 'has-text-dark')
 
     var levelData = jobResult.levels[0].name;
     jobLevel.innerHTML = 'Level: ' + levelData;
+    jobLevel.classList.add('message-body', 'py-2', 'has-background-info-light', 'has-text-dark')
 
     var descriptionData = jobResult.contents;
     jobDescription.innerHTML = 'Job Description: ' + descriptionData;
     jobDescription.setAttribute('id', "longDesc" + i);
     jobDescription.setAttribute("hidden", true);
+    jobDescription.classList.add('message-body', 'py-2', 'has-background-info-light', 'has-text-dark')
 
     var shortDescriptionData = jobResult.contents;
     truncatedDescription.innerHTML = 'Job Description: ' + shortDescriptionData.substring(0, 200);
     truncatedDescription.setAttribute('id', "shortDesc" + i);
+    truncatedDescription.classList.add('message-body', 'py-2', 'has-background-info-light', 'has-text-dark')
 
     var showMore = document.createElement('a');
     showMore.setAttribute('id', "toggleButton" + i);
     showMore.innerText = 'Show more ...';
+    showMore.classList.add('message-body', 'py-2', 'has-text-dark')
 
     //toggle between no display and display block. If my display is block, make it none; if it's none, make it block
     //this function runs after the results are displayed, to show short description and allow the user to expand it if the Show more ...button is clicked
@@ -144,7 +152,7 @@ function createResultsDiv(jobResult, i) {
     resultsList.append(jobTitle, jobCompany, jobDate, jobCategory, jobLevel, jobDescription, truncatedDescription, showMore);
 
     //Add border for results and append new div to the job-cards div
-    resultsList.classList.add('has-background-warning-light', 'border');
+    resultsList.classList.add('has-background-info-light', 'border', 'has-text-dark', 'my-3');
     resultsContainerDivEl.appendChild(resultsList);
 }
 
